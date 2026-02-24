@@ -1,23 +1,18 @@
-.data
+# main.s - Updated Entry Point
+.text              # Tell Ripes this is CODE first
+.globl main
 
-# 64-element unsorted array (256 bytes)
-array:
-    .word 45, 12, 78, 3, 90, 56, 23, 11
-    .word 67, 89, 34, 22, 10, 5, 99, 1
-    .word 54, 32, 76, 18, 43, 27, 65, 8
-    .word 91, 14, 37, 60, 2, 84, 29, 73
-    .word 6, 48, 71, 19, 88, 33, 50, 4
-    .word 95, 21, 40, 58, 7, 62, 13, 86
-    .word 30, 53, 9, 97, 24, 68, 15, 82
-    .word 41, 74, 16, 59, 26, 92, 35, 70
+main:
+    la a0, array   # Load Evana's array
+    lw a1, size    # Load size
+    
+    jal ra, insertion_sort  # Run your logic
+    
+    li a7, 10      # Exit
+    ecall
 
-# 8x8 Adjacency Matrix (256 bytes)
-adjMatrix:
-    .word 0,1,0,0,1,0,0,0
-    .word 1,0,1,0,0,0,0,0
-    .word 0,1,0,1,0,0,0,0
-    .word 0,0,1,0,1,0,0,0
-    .word 1,0,0,1,0,1,0,0
-    .word 0,0,0,0,1,0,1,0
-    .word 0,0,0,0,0,1,0,1
-    .word 0,0,0,0,0,0,1,0
+# Move the includes to the BOTTOM
+.include "data.s"
+.include "src/utils.s"
+.include "src/insertion.s"
+.include "src/bubbles.s"
