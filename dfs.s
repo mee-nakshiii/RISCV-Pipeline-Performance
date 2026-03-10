@@ -16,13 +16,12 @@ main:
     # Print Status to Console
     li a7, 4
     la a0, msg
-    ecall                #
+    ecall                
 
     # Exit Program
     li a7, 10
     ecall
 dfs:
-    # Stack Prologue
     addi sp, sp, -16
     sw ra, 12(sp)
     sw s0, 8(sp)         # Current node
@@ -36,7 +35,7 @@ dfs:
     sb t2, 0(t1)         # Store Byte: visited[s0] = 1
 
 dfs_done:
-    # Stack Epilogue
+ 
     lw ra, 12(sp)
     lw s0, 8(sp)
     addi sp, sp, 16
